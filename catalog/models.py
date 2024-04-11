@@ -5,7 +5,7 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class Category(models.Model):
-    name = models.Field(verbose_name='наименование', primary_key=True)
+    name = models.CharField(verbose_name='наименование', primary_key=True)
     description = models.TextField(**NULLABLE, verbose_name='описание')
     # created_at = models.CharField(max_length=150, verbose_name='вносимое поле')
 
@@ -22,9 +22,9 @@ class Product(models.Model):
     description = models.TextField(**NULLABLE, verbose_name='описание')
     price = models.PositiveIntegerField(default=0, verbose_name='цена за покупку')
     photo = models.ImageField(upload_to='catalog/', **NULLABLE, verbose_name='изображение(превью)')
-    created_at = models.DateTimeField(**NULLABLE, verbose_name='дата создания', auto_now_add=True)
-    updated_at = models.DateTimeField(**NULLABLE, verbose_name='дата последнего изменения', auto_now=True)
-    category = models.CharField(max_length=150, verbose_name='категория')
+    created_at = models.DateTimeField(verbose_name='дата создания', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='дата последнего изменения', auto_now=True)
+    category = models.ForeignKey('Category', on_delete=models.PROTECT)
 
     def __str__(self):
         return f'{self.name} ({self.category})'
