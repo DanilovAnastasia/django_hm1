@@ -8,11 +8,29 @@
     }
   },
   {
-    "model": "catalog.category",
-    "pk": 222,
+    "model": "catalog.product",
+    "pk": 1,
     "fields": {
       "name": "выф",
-      "description": "выфвыф"
+      "description": "выфвыф",
+      "price": 30,
+      "photo": "product/выф.jpeg",
+      "created_at": "2024-04-07T09:38:37.313Z",
+      "updated_at": "2024-04-07T09:38:37.313Z",
+      "category": 111
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "qwe",
+      "description": "qeqeqeqe",
+      "price": 30,
+      "photo": "product/выф.jpeg",
+      "created_at": "2024-04-07T09:38:37.313Z",
+      "updated_at": "2024-04-07T09:38:37.313Z",
+      "category": 111
     }
   }
 ]
