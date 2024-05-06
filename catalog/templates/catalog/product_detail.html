@@ -1,0 +1,30 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <!--          <img src="/media/{{ object.photo }}" alt="Product Image" class="Image fluid">-->
+                    <img src="{{ object.photo|mymedia }}" alt="Product Image" class="Image fluid">
+                    <div class="card-body">
+                        <small class="text-body-secondary">{{ object.category }}</small>
+                        <p class="card-text">{{ object.description|slice:':100' }}</p>
+                        <p class="card-text">Цена: {{ object.price }} руб</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                                        href="{% url 'catalog:products_list' %}" class="text-black">На главную</a>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">В Корзину</button>
+                            </div>
+                            <small class="text-body-secondary">Просмотров: {{ object.views_count }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

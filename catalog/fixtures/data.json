@@ -17,7 +17,8 @@
       "photo": "product/выф.jpeg",
       "created_at": "2024-04-07T09:38:37.313Z",
       "updated_at": "2024-04-07T09:38:37.313Z",
-      "category": 111
+      "category": 111,
+      "views_count": 3
     }
   },
   {
@@ -30,7 +31,8 @@
       "photo": "product/выф.jpeg",
       "created_at": "2024-04-07T09:38:37.313Z",
       "updated_at": "2024-04-07T09:38:37.313Z",
-      "category": 111
+      "category": 111,
+      "views_count": 6
     }
   }
 ]
