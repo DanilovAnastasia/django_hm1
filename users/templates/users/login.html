@@ -1,0 +1,30 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="container">
+        <form class="row mt-4 mb-4" method="post" enctype="multipart/form-data">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                          Вход в Личный кабинет
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success">
+                         Войти
+                        </button>
+                        <a href="{% url 'users:password_reset' %}" class="btn btn-danger">Восстановить пароль</a>
+                    </div>
+                    <div class="card-footer">
+                        Если Вы только что зарегистрировались! Вам необходимо подтвердить Вашу электронную почту.
+                        Для этого, пройдите по ссылке, которую Вы найдете в отправленном Вам на почту письме.
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

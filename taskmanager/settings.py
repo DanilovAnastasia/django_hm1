@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog',
     'articles',
+    'users',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +93,7 @@ DATABASES = {
         'USER': 'postgres',
         'HOST': 'localhost',  # Адрес, на котором развернут сервер БД
         'PORT': 5432,  # Порт, на котором работает сервер БД
-        'PASSWORD': 'test123',
+        'PASSWORD': str(os.getenv("DATABASE_PASSWORD")),
     }
 }
 
@@ -139,6 +143,32 @@ MEDIA_URL = '/media/'
 
 
 MEDIA_ROOT = BASE_DIR.joinpath('media')
+
+# Добавляем настройки для работы Приложения User
+AUTH_USER_MODEL = "users.User"
+
+# Данная настройка требуется для работы кастомной команды create_superuser, чтобы при переходе на страницу
+# был переход к форме Входа
+LOGIN_REDIRECT_URL = "/"
+# Для Выхода, переадресует на Главную страницу
+LOGOUT_REDIRECT_URL = "/"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Настройки для отправки писем на почту сервиса Яндекс
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+# Пишем нашу почту, ту почту с которой будет отправляться письмо
+# Получаем пароль для приложения следуя шагам на сайте https://yandex.ru/support/id/authorization/app-passwords.html
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+# Пишем пароль для Приложения Яндекс, а не пароль входа на Почту
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+# Дополнительные настройки для всех почтовых сервисов
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

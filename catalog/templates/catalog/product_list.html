@@ -2,9 +2,13 @@
 {% load my_tags %}
 {% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-6">Магазин фыв</h1>
-    <p class="lead">Все продукты, представленные в нашем магазине, это ТОП.</p>
-    <a class="btn btn btn-outline-primary mt-4" href="{% url 'catalog:create' %}" role="button">Добавить Продукт</a>
+    <h1 class="display-6"> Магазин dsa</h1>
+    <p class="lead"> Описание ввв </p>
+    {% if user.is_authenticated %}
+        <a class="btn btn btn-outline-primary mt-4" href="{% url 'catalog:create' %}" role="button">Добавить Продукт</a>
+    {% else %}
+        <a class="btn btn btn-outline-primary mt-4" href="{% url 'catalog:create' %}" role="button">Добавить Продукт</a>
+    {% endif %}
 </div>
 
 <div class="container">

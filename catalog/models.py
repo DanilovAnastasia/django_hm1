@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 
 NULLABLE = {'blank': True, 'null': True}
@@ -26,6 +27,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(verbose_name='дата последнего изменения', auto_now=True)
     category = models.ForeignKey('Category', on_delete=models.PROTECT)
     views_count = models.IntegerField(default=0, verbose_name='количество просмотров')
+    author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return f'{self.name} ({self.category})'
