@@ -28,6 +28,7 @@ class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.PROTECT)
     views_count = models.IntegerField(default=0, verbose_name='количество просмотров')
     author = models.ForeignKey(User, verbose_name="Автор", on_delete=models.SET_NULL, blank=True, null=True)
+    is_published = models.BooleanField(default=False, verbose_name="Признак публикации")
 
     def __str__(self):
         return f'{self.name} ({self.category})'
@@ -35,6 +36,14 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+        ordering = (
+            "name",
+        )
+        permissions = (
+            ('set_published', 'Can cancel publication of a product'),
+            ('change_description', 'Can change description'),
+            ('change_category', 'Can change category')
+        )
 
 
 class Version(models.Model):

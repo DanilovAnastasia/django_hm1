@@ -55,3 +55,11 @@ class VersionForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Version
         fields = ('id', 'product', 'name', 'number', 'is_current')
+
+
+class ProductModeratorForm(StyleFormMixin, ModelForm):
+    """Класс создание форм для реализации функционала группы Moderator"""
+
+    class Meta:
+        model = Product
+        fields = ("description", "category", "is_published")
